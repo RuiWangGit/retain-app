@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 
+import { Main } from './containers';
+
+
+
 @Component({
     selector: 'app',
+    directives: [
+        Main
+
+    ],
     template: `
         <div>
-            <h3>
-                    tes;tsre;
-            </h3>
-
+            <main-container></main-container>
         </div>
     `
 })
@@ -15,3 +20,4 @@ import { Component } from '@angular/core';
 export class App {
 
 }
+

@@ -40,7 +40,7 @@ import { Component, OnInit } from '@angular/core'
     </header>
     `
 })
-export class AppBarComponent implements OnInit{
+export class AppBarComponent {
     constructor() { }
 
     ngOnInit() { }

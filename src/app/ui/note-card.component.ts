@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 
 
 @Component({
@@ -61,10 +61,11 @@ import { Component, OnInit, Input } from '@angular/core'
 })
 
 
-export class NoteCard implements OnInit{
+export class NoteCard {
     //note = {title: 'clean up', value: 'clean room'};
 
     @Input() note = {}; //default to property named 'note'
+    @Output() checked = new EventEmitter(); //observable,
 
     showCheck: boolean = false;
     toggle() {
@@ -73,6 +74,7 @@ export class NoteCard implements OnInit{
 
     onChecked() {
         console.log('clicked');
+        this.checked.next(this.note);
     }
 
     constructor() { }

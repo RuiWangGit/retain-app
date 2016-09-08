@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { NoteCard, NoteCreator } from '../ui'
 
 
@@ -20,7 +20,7 @@ import { NoteCard, NoteCreator } from '../ui'
         <div class="row center-xs notes">
       <div class="col-xs-6 creator">
             note creator here
-            <note-creator></note-creator>
+            <note-creator (createNote)="onCreateNote($event)"></note-creator>
       </div>
 
       <div class="notes col-xs-8">
@@ -54,5 +54,9 @@ export class Notes {
     onNoteChecked(note, i) {
         console.log(note);
         this.notes.splice(i, 1)
+    }
+
+    onCreateNote(note) {
+        this.notes.push(note);
     }
 };

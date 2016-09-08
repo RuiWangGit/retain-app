@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NoteCard } from '../ui'
+import { NoteCard, NoteCreator } from '../ui'
 
 
 @Component ( {
     selector: 'notes-container',
-    directives: [ NoteCard ],
+    directives: [ NoteCard, NoteCreator ],
     styles: [`
      .notes {
           padding-top: 50px;
@@ -19,8 +19,10 @@ import { NoteCard } from '../ui'
     template: `
         <div class="row center-xs notes">
       <div class="col-xs-6 creator">
-        note creator here
+            note creator here
+            <note-creator></note-creator>
       </div>
+
       <div class="notes col-xs-8">
         <div class="row between-xs">
           <note-card
@@ -34,7 +36,6 @@ import { NoteCard } from '../ui'
         </div>
       </div>
     </div>
-
     `
 })
 

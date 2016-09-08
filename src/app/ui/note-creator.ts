@@ -24,7 +24,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core'
     ],
     template: `
             <div class="note-creator shadow-2">
-                <pre>{{newNote | json}}</pre>
+                <!--<pre>{{newNote | json}}</pre>-->
               <form class="row" (submit)="onCreateNote()">
                 <input
                   type="text"
@@ -32,8 +32,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core'
                   name="newNoteTitle"
                   placeholder="Title"
                   class="col-xs-10 title"
+                  *ngIf="fullForm"
                 >
                 <input
+                  (focus)="toggle(true)"
                   type="text"
                   [(ngModel)]="newNote.value"
                   name="newNoteValue"
@@ -92,6 +94,13 @@ export class NoteCreator {
     newNote = {
         title: '',
         value: ''
+    }
+
+
+    fullForm: boolean = false;
+
+    toggle(value: boolean) {
+        this.fullForm = value;
     }
 
     onCreateNote() {

@@ -1,4 +1,5 @@
 export { App } from './app';
+export { routes } from './routes'
 
 import * as services from './services';
 

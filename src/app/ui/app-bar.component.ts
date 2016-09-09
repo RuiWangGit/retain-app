@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 
 
 @Component({
     moduleId : module.id,
+    directives: [...ROUTER_DIRECTIVES],
     selector: 'app-bar',
     styles: [`
         .app-bar {
@@ -28,12 +30,12 @@ import { Component, OnInit } from '@angular/core'
     template: `
 
     <header class="app-bar row middle-xs">
-      <span class="logo col-xs-10">
+      <span [routerLink]="['']" class="logo col-xs-10">
         Retain
       </span>
       <nav class="col-xs-2">
         <div class="row middle-xs between-xs">
-          <span class="link">Settings</span>
+          <span [routerLink]="['', 'about']" class="link">About</span>
           <span class="link">signout</span>
         </div>
       </nav>

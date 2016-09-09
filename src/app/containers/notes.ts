@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, OnDestroy } from '@angular/core';
 import { NoteCard, NoteCreator } from '../ui';
 import { NoteService } from '../services'
 
@@ -40,7 +40,11 @@ import { NoteService } from '../services'
 //<!--(checked)="onNoteChecked(note)"-->
 
 
-export class Notes {
+export class Notes implements OnDestroy {
+
+    ngOnDestroy() {
+        console.log('destroyed');
+    }
 
     //note = {title: 'new note', value: 'note here', color: 'seagreen'};
 

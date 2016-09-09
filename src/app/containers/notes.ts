@@ -1,6 +1,9 @@
 import { Component, Output, OnDestroy } from '@angular/core';
 import { NoteCard, NoteCreator } from '../ui';
-import { NoteService } from '../services'
+import { NoteService } from '../services';
+
+import { Store } from '../store';
+import 'rxjs/Rx';
 
 
 @Component ( {
@@ -56,12 +59,12 @@ export class Notes implements OnDestroy {
 
     notes = [];
 
-    constructor(private noteService: NoteService) {
+    constructor(private noteService: NoteService, private store: Store) {
         console.log('00000000');
-
-        this.noteService.getNotes().subscribe( res => this.notes = res.data )
-        console.log('......dddd....')
-        console.log(this.notes)
+        this.store.changes.pluck('notes').subscribe( (notes: any) => this.notes = notes);
+        //this.noteService.getNotes().subscribe( res => this.notes = res.data )
+        //console.log('......dddd....')
+        //console.log(this.notes)
 
     }
 
@@ -69,21 +72,25 @@ export class Notes implements OnDestroy {
         //console.log(note);
         //this.notes.splice(i, 1);
 
-        this.noteService.completeNote(note)
-            .subscribe(note => {
-                this.notes.splice(i,1);
-                //or
-                //const i = this.notes.findIndex(localNote => localNote.id === note.id );
-                //this.notes.splice(i, 1);
 
-            })
+        //this.noteService.completeNote(note)
+        //    .subscribe(note => {
+        //        this.notes.splice(i,1);
+        //        //or
+        //        //const i = this.notes.findIndex(localNote => localNote.id === note.id );
+        //        //this.notes.splice(i, 1);
+        //
+        //    })
+
+        this.noteService.completeNote(note).subscribe()
+
 
 
     }
 
     onCreateNote(note) {
         //this.notes.push(note);
-        this.noteService.createNote(note).subscribe(note =>this.notes.push(note));
+        this.noteService.createNote(note).subscribe();
     }
 
 

@@ -1,5 +1,6 @@
 import { Component, Output } from '@angular/core';
-import { NoteCard, NoteCreator } from '../ui'
+import { NoteCard, NoteCreator } from '../ui';
+import { NoteService } from '../services'
 
 
 @Component ( {
@@ -12,9 +13,6 @@ import { NoteCard, NoteCreator } from '../ui'
         .creator {
           margin-bottom: 40px;
         }
-
-
-
     `],
     template: `
         <div class="row center-xs notes">
@@ -45,18 +43,46 @@ import { NoteCard, NoteCreator } from '../ui'
 export class Notes {
 
     //note = {title: 'new note', value: 'note here', color: 'seagreen'};
-    notes = [
-        {title: 'new note', value: 'note here', color: 'seagreen'},
-        {title: 'new note', value: 'note here', color: 'seagreen'},
-        {title: 'new note', value: 'note here', color: 'seagreen'},
-    ]
+
+    //notes = [
+    //    {title: 'new note', value: 'note here', color: 'seagreen'},
+    //    {title: 'new note', value: 'note here', color: 'seagreen'},
+    //    {title: 'new note', value: 'note here', color: 'seagreen'},
+    //]
+
+    notes = [];
+
+    constructor(private noteService: NoteService) {
+        console.log('00000000');
+
+        this.noteService.getNotes().subscribe( res => this.notes = res.data )
+        console.log('......dddd....')
+        console.log(this.notes)
+
+    }
 
     onNoteChecked(note, i) {
-        console.log(note);
-        this.notes.splice(i, 1)
+        //console.log(note);
+        //this.notes.splice(i, 1);
+
+        this.noteService.completeNote(note)
+            .subscribe(note => {
+                this.notes.splice(i,1);
+                //or
+                //const i = this.notes.findIndex(localNote => localNote.id === note.id );
+                //this.notes.splice(i, 1);
+
+            })
+
+
     }
 
     onCreateNote(note) {
-        this.notes.push(note);
+        //this.notes.push(note);
+        this.noteService.createNote(note).subscribe(note =>this.notes.push(note));
     }
+
+
+
+
 };

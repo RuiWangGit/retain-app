@@ -16,10 +16,12 @@ export interface Note {
 
 export interface State {
     notes: Note[];
+    user: Object;
 }
 
 const defaultState = {
-    notes: []
+    notes: [],
+    user: {}
 }
 
 

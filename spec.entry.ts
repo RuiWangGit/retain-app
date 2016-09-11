@@ -15,6 +15,7 @@ import { TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS, TEST_BROWSER_DYNAMIC_APPLICATI
 
 
 import './src/app/services/api.spec'
+import './src/app/ui/note-card.component.spec'
 
 setBaseTestProviders(
     TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
